@@ -1,5 +1,6 @@
 
-  public class Form {private int id;
+  public class Form {
+    private int id;
     private String municipality;     
     private String contract;       
     private String district;       

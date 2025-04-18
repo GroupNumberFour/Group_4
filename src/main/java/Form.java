@@ -1,5 +1,7 @@
 
-  public class Form {
+import java.util.Scanner;
+
+ public class Form {
     private int id;
     private String municipality;     
     private String contract;       
@@ -7,10 +9,12 @@
     private String coordinates;      
     private String reportDate;       
     private String subject;         
-    private String[] notes;         
 
+    private String notes;      
+    
+ 
     public Form(int id, String municipality, String contract, String district,
-                String coordinates, String reportDate, String subject, String[] notes) {
+                String coordinates, String reportDate, String subject, String notes) {
         this.id = id;
         this.municipality = municipality;
         this.contract = contract;
@@ -21,21 +25,28 @@
         this.notes = notes;
     }
 
+    
     public void displayForm() {
-        System.out.println("Form ID: " + id);
-        System.out.println("Municipality: " + municipality);
-        System.out.println("Contract: " + contract);
-        System.out.println("District: " + district);
-        System.out.println("Coordinates: " + coordinates);
-        System.out.println("Report Date: " + reportDate);
-        System.out.println("Subject: " + subject);
-        System.out.println("Notes:");
-        for (String note : notes) {
-            System.out.println("- " + note);
-        }
+
         System.out.println("-------------------------");
+        System.out.println("------------- Jeddah Municipality Form -------------");
+        System.out.println("Form ID: " + id);
+        System.out.println(municipality);
+        System.out.println(contract);
+        System.out.println(district);
+        System.out.println(coordinates);
+        System.out.println(reportDate);
+        System.out.println(subject);
+        System.out.println(notes);
+        System.out.println("----------------------------------------------------");
+
     }
+    
+    public void displaySimple(){
+    System.out.println("Form ID: " + id);
+    System.out.println("----------------------------------------------------");
+    }
+    
 
    
 }
-

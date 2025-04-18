@@ -7,7 +7,7 @@ public class FileHandler {
 
     public static void save(Form form) {
         savedForms.add(form);
-        System.out.println("Form saved successfully.");
+        
     }
 
     public static void listForms() {

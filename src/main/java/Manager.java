@@ -1,3 +1,5 @@
+package project251;
+
 public class Manager {
 private static int nextId = 1;
 

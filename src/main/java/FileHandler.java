@@ -1,3 +1,5 @@
+package project251;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -104,6 +106,28 @@ public class FileHandler {
     save(form);
     }
 
+    
+     
+     // for update 
+    public Form selectForm(int formId) { // select form
+        for (Form f : savedForms) {
+            if (f.getId() == formId) {
+                return f;
+            }
+        }
+        return null;
+    }
+
+
+    public boolean replaceInfo(Form updatedForm) { 
+        for (int i = 0; i < savedForms.size(); i++) {
+            if (savedForms.get(i).getId() == updatedForm.getId()) {
+                savedForms.set(i, updatedForm);
+                return true;
+            }
+        }
+        return false;
+    }
     
     
 }

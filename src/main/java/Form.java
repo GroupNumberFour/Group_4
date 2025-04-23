@@ -1,16 +1,15 @@
-
 import java.util.Scanner;
 
  public class Form {
-    private int id;
-    private String municipality;     
-    private String contract;       
-    private String district;       
-    private String coordinates;      
-    private String reportDate;       
-    private String subject;         
+    int id;
+    String municipality;     
+    String contract;       
+    String district;       
+    String coordinates;      
+    String reportDate;       
+    String subject;         
 
-    private String notes;      
+    String notes;      
     
  
     public Form(int id, String municipality, String contract, String district,
@@ -25,6 +24,34 @@ import java.util.Scanner;
         this.notes = notes;
     }
 
+        public int getId() { 
+         return id;
+     }
+    // update content
+    public void updateInfo(String municipality, String contract, String district,
+                       String coordinates, String reportDate, String subject, String notes) {
+    if (municipality != null) 
+        this.municipality = municipality;
+    
+    if (contract != null) 
+        this.contract = contract;
+    
+    if (district != null) 
+        this.district = district;
+    
+    if (coordinates != null) 
+        this.coordinates = coordinates;
+    
+    if (reportDate != null)
+        this.reportDate = reportDate;
+    
+    if (subject != null) 
+        this.subject = subject;
+    
+    if (notes != null) 
+        this.notes = notes;
+}
+    
     
     public void displayForm() {
 

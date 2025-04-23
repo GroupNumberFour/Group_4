@@ -1,5 +1,10 @@
+package project251;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.PrintWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 public class FileHandler {
@@ -38,7 +43,8 @@ public class FileHandler {
     else{
     savedForms.remove(formID);
     System.out.println("Form number: " + formID + " deleted successfully.");
-}
+    saveFormsToFile("Form.txt");
+    }
     }
 
 
@@ -102,8 +108,49 @@ public class FileHandler {
     // create a new form object and save it
     Form form = new Form(id, municipality, contract, district, coordinates, reportDate, subject, notes);
     save(form);
+          saveFormsToFile("Form.txt");  
     }
 
     
+     
+     // for update 
+    public Form selectForm(int formId) { // select form
+        for (Form f : savedForms) {
+            if (f.getId() == formId) {
+                return f;
+            }
+        }
+        return null;
+    }
+
+
+    public boolean replaceInfo(Form updatedForm) { 
+        for (int i = 0; i < savedForms.size(); i++) {
+            if (savedForms.get(i).getId() == updatedForm.getId()) {
+                savedForms.set(i, updatedForm);
+                return true;
+            }
+        }
+        return false;
+    }
     
+    public static void saveFormsToFile(String filename) {
+    try (PrintWriter writer = new PrintWriter(filename)) {
+        for (Form f : savedForms) {
+            writer.println("Form ID: " + f.getId());
+            writer.println("Municipality: " + f.municipality);
+            writer.println("Contract: " + f.contract);
+            writer.println("District: " + f.district);
+            writer.println("Coordinates: " + f.coordinates);
+            writer.println("Report Date: " + f.reportDate);
+            writer.println("Subject: " + f.subject);
+            writer.println("Notes: " + f.notes);
+            writer.println("--------------------------------------------------");
+        }
+        System.out.println(" Forms saved to " + filename);
+    } catch (IOException e) {
+        System.out.println(" Error saving forms: " + e.getMessage());
+    }
+}
+
 }

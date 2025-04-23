@@ -1,3 +1,6 @@
+package project251;
+
+
 import java.util.Scanner;
 
  public class Form {

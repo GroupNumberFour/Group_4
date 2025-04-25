@@ -1,7 +1,9 @@
-package project251;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.PrintWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class NewMain {
 
@@ -21,7 +23,17 @@ public class NewMain {
         System.out.print("Enter your employee ID: ");
         String employeeId = input.nextLine();
 
+        //writing emblyee in a file
+        try (PrintWriter writer = new PrintWriter(new FileOutputStream("employees.txt", true))) {
+          
+            writer.println("ID: " + employeeId + ", Name: " + name);
+           }
+        catch (IOException e) {
+         
+            System.out.println(" Error saving employee info: " + e.getMessage());
+           }
 
+        
         String role = "";
         while (true) {
             
@@ -47,10 +59,12 @@ public class NewMain {
                         System.out.println("please enter form id you want to delete :");
                         int formID = input.nextInt();
                         file.delete(formID);
+                        file.listForms();
                     }
-                     else if (ManagerMenueSelection == 3) {// generate excel 
-                    } else if (ManagerMenueSelection == 4) {// exit 
-                        status = false;
+                      else if (ManagerMenueSelection == 3) {// exit 
+                        System.out.println("Exiting program...");
+                        break;
+                
                     }
                 }//end while 2 
                 
@@ -60,6 +74,7 @@ public class NewMain {
 
                } else if (role.equals("employee") || role.equals("e")) {
                 System.out.println("\nHello Employee " + name + " (ID: " + employeeId + ")");
+                
              //1. fill 
              while(true){
               EmployeeMenueDisplay(); // method to display the employee menue
@@ -73,7 +88,10 @@ public class NewMain {
                   updateForm(file, name, employeeId); 
                }
                
-              else if (EmployeeMenueChoice == 3){
+                else if (EmployeeMenueChoice == 3){// Excel
+                }
+                
+              else if (EmployeeMenueChoice == 4){
                   System.out.println("Exiting program...");
                   break;
                 
@@ -88,7 +106,7 @@ public class NewMain {
                 System.out.println(" Invalid role. Please enter 'manager' or 'employee'.\n");
             }
 
-             input.close();
+             
         }//end while 1
         
        
@@ -102,8 +120,7 @@ public class NewMain {
         System.out.println("please choose a number from the menue: ");
         System.out.println("1. create a new form ");
         System.out.println("2. delete a specific form ");
-        System.out.println("3. generate Excel report ");
-        System.out.println("4. Logout");
+        System.out.println("3. Logout");
         System.out.println("your selection: ");
     
     }
@@ -114,7 +131,8 @@ public class NewMain {
             System.out.println("\n===== Main Menu =====");
             System.out.println("1. Fill a new form");
             System.out.println("2. update a specific form ");
-            System.out.println("3. Exit");
+            System.out.println("3. generate Excel report ");
+            System.out.println("4. Exit");
             System.out.print("Enter your choice: ");
       }
 

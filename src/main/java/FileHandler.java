@@ -1,13 +1,19 @@
-package project251;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.PrintWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 public class FileHandler {
     private static ArrayList<Form> savedForms = new ArrayList<>();
 
     
+    public ArrayList<Form> getSavedForms() {
+    return savedForms;
+}
+
     public static void save(Form form) {
         savedForms.add(form);
         System.out.println("Form saved successfully.");
@@ -15,33 +21,23 @@ public class FileHandler {
     }
 
   public static void delete(int formID) {
-        
-    formID--;
-    if (savedForms.get(formID) == null) { 
-        System.out.println("Form alreeady deleted.");
-        
-    }
-
+    formID--; // because user input is 1-based, but list is 0-based
+    
     if (savedForms.isEmpty()) {
         System.out.println("You do not have forms to delete, create one first.");
-        
+        return;
     }
-
-    if (formID <= 0) {
-        System.out.println("Invalid form number. Form ID must be greater than 0.");
-        
+    
+    if (formID < 0 || formID >= savedForms.size()) {
+        System.out.println("Invalid form number. No form exists with ID: " + (formID + 1));
+        return;
     }
-
-    if (formID > savedForms.size()) {
-        System.out.println("Invalid form number. No form exists with ID: " + formID);
-        
-    }
-
-    else{
+    
     savedForms.remove(formID);
-    System.out.println("Form number: " + formID + " deleted successfully.");
+    System.out.println("Form number: " + (formID + 1) + " deleted successfully.");
+    saveFormsToFile("Form.txt");
 }
-    }
+
 
 
     
@@ -104,6 +100,7 @@ public class FileHandler {
     // create a new form object and save it
     Form form = new Form(id, municipality, contract, district, coordinates, reportDate, subject, notes);
     save(form);
+          saveFormsToFile("Form.txt");  
     }
 
     
@@ -129,5 +126,23 @@ public class FileHandler {
         return false;
     }
     
-    
+    public static void saveFormsToFile(String filename) {
+    try (PrintWriter writer = new PrintWriter(filename)) {
+        for (Form f : savedForms) {
+            writer.println("Form ID: " + f.getId());
+            writer.println("Municipality: " + f.municipality);
+            writer.println("Contract: " + f.contract);
+            writer.println("District: " + f.district);
+            writer.println("Coordinates: " + f.coordinates);
+            writer.println("Report Date: " + f.reportDate);
+            writer.println("Subject: " + f.subject);
+            writer.println("Notes: " + f.notes);
+            writer.println("--------------------------------------------------");
+        }
+        System.out.println(" Forms saved to " + filename);
+    } catch (IOException e) {
+        System.out.println(" Error saving forms: " + e.getMessage());
+    }
+}
+
 }

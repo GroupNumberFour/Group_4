@@ -1,18 +1,17 @@
-package project251;
 
 
 import java.util.Scanner;
 
  public class Form {
-    private int id;
-    private String municipality;     
-    private String contract;       
-    private String district;       
-    private String coordinates;      
-    private String reportDate;       
-    private String subject;         
+    int id;
+    String municipality;     
+    String contract;       
+    String district;       
+    String coordinates;      
+    String reportDate;       
+    String subject;         
 
-    private String notes;      
+    String notes;      
     
  
     public Form(int id, String municipality, String contract, String district,

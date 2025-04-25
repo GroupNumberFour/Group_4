@@ -1,7 +1,4 @@
 
-package project251;
-
-
 public class Employee {
 
     private String empId;
@@ -32,6 +29,7 @@ public class Employee {
         boolean success = fileHandler.replaceInfo(form);
         if (success) {
             System.out.println("\n ...............Success Update..................");  // Success message
+            FileHandler.saveFormsToFile("Form.txt");  
         } else {
             System.out.println("\n ........................Replace failed......................");  // Error message if replacement fails
         }

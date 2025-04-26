@@ -16,8 +16,8 @@ private static int nextId = 1;
 
         // Save to separate file instead of shared forms list
         try (PrintWriter writer = new PrintWriter(new FileOutputStream("template_forms.txt", true))) {
-            writer.println("Template Form Created by Manager");
-            writer.println("ID: " + newForm.getId());
+            
+            writer.println("Form ID: " + newForm.getId());
             writer.println("Municipality: " + newForm.municipality);
             writer.println("Contract: " + newForm.contract);
             writer.println("District: " + newForm.district);
@@ -30,7 +30,7 @@ private static int nextId = 1;
             System.out.println("Error saving template: " + e.getMessage());
         }
 
-        FileHandler.save(newForm);
+        
         // Continue with normal display
         System.out.println("----------------------------------------------------");
         System.out.println("--------Form Created and Saved Successfully--------");

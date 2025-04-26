@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -13,15 +12,9 @@ import java.time.format.DateTimeFormatter;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author Amani
- */
+
+
 public class ExcelTableApp extends JFrame {
     protected JTable table;
     protected DefaultTableModel model;
@@ -196,14 +189,14 @@ protected void generateExcel() {
             workbook.write(fileOut);
             fileOut.close();
 
-            JOptionPane.showMessageDialog(this, "✅ تم حفظ الملف بنجاح:\n" + filePath);
+            JOptionPane.showMessageDialog(this, "تم حفظ الملف بنجاح:\n" + filePath);
         } else {
-            JOptionPane.showMessageDialog(this, "❌ لم يتم حفظ الملف. تم إلغاء العملية.");
+            JOptionPane.showMessageDialog(this, "لم يتم حفظ الملف. تم إلغاء العملية.");
         }
 
     } catch (Exception e) {
         e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "❌ فشل إنشاء الملف: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, " فشل إنشاء الملف: " + e.getMessage());
     }
 }
     private CellStyle centeredStyle(Workbook wb) {

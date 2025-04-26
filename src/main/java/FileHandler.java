@@ -4,6 +4,8 @@ import java.util.Scanner;
 import java.io.PrintWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 
 public class FileHandler {
@@ -122,16 +124,16 @@ public static void delete(int formID) {
     }
 
 
-    public boolean replaceInfo(Form updatedForm) { 
-        for (int i = 0; i < savedForms.size(); i++) {
-            if (savedForms.get(i).getId() == updatedForm.getId()) {
-                savedForms.set(i, updatedForm);
-                return true;
-            }
+ public boolean replaceInfo(Form updatedForm) {
+    for (int i = 0; i < savedForms.size(); i++) {
+        if (savedForms.get(i).getId() == updatedForm.getId()) {
+            savedForms.set(i, updatedForm); // استبدل النموذج القديم بالمعدل
+            return true;
         }
-        return false;
     }
-    
+    return false; // إذا ما لقيناه
+}
+  
     public static void saveFormsToFile(String filename) {
     try (PrintWriter writer = new PrintWriter(filename)) {
         for (Form f : savedForms) {
@@ -150,5 +152,43 @@ public static void delete(int formID) {
         System.out.println(" Error saving forms: " + e.getMessage());
     }
 }
+    
+    
+
+public static void loadFormsFromFile(String filename) {
+    savedForms.clear(); // Clear old data first
+    try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+        String line;
+        int id = 0;
+        String municipality = "", contract = "", district = "", coordinates = "", reportDate = "", subject = "", notes = "";
+        
+        while ((line = reader.readLine()) != null) {
+            if (line.startsWith("Form ID:")) {
+                id = Integer.parseInt(line.substring(8).trim());
+            } else if (line.startsWith("Municipality:")) {
+                municipality = line.substring(13).trim();
+            } else if (line.startsWith("Contract:")) {
+                contract = line.substring(9).trim();
+            } else if (line.startsWith("District:")) {
+                district = line.substring(9).trim();
+            } else if (line.startsWith("Coordinates:")) {
+                coordinates = line.substring(12).trim();
+            } else if (line.startsWith("Report Date:")) {
+                reportDate = line.substring(12).trim();
+            } else if (line.startsWith("Subject:")) {
+                subject = line.substring(8).trim();
+            } else if (line.startsWith("Notes:")) {
+                notes = line.substring(6).trim();
+            } else if (line.startsWith("--------------------------------------------------")) {
+                Form form = new Form(id, municipality, contract, district, coordinates, reportDate, subject, notes);
+                savedForms.add(form);
+            }
+        }
+        System.out.println("Forms loaded successfully from file.");
+    } catch (Exception e) {
+        System.out.println("Error loading forms: " + e.getMessage());
+    }
+}
+
 
 }

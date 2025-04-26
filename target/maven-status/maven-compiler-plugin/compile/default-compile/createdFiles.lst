@@ -1,4 +1,6 @@
 NewMain.class
+ExcelTableApp.class
 Form.class
 Manager.class
+Employee.class
 FileHandler.class

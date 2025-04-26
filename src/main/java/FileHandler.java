@@ -10,27 +10,37 @@ public class FileHandler {
     private static ArrayList<Form> savedForms = new ArrayList<>();
 
     
+    public ArrayList<Form> getSavedForms() {
+    return savedForms;
+}
+
     public static void save(Form form) {
         savedForms.add(form);
         System.out.println("Form saved successfully.");
         
     }
 
-  public static void delete(int formID) {
-    formID--; // because user input is 1-based, but list is 0-based
-    
+public static void delete(int formID) {
     if (savedForms.isEmpty()) {
         System.out.println("You do not have forms to delete, create one first.");
         return;
     }
-    
-    if (formID < 0 || formID >= savedForms.size()) {
-        System.out.println("Invalid form number. No form exists with ID: " + (formID + 1));
+
+    Form toDelete = null;
+    for (Form form : savedForms) {
+        if (form.getId() == formID) {
+            toDelete = form;
+            break;
+        }
+    }
+
+    if (toDelete == null) {
+        System.out.println("Invalid form number. No form exists with ID: " + formID);
         return;
     }
-    
-    savedForms.remove(formID);
-    System.out.println("Form number: " + (formID + 1) + " deleted successfully.");
+
+    savedForms.remove(toDelete);
+    System.out.println("Form number: " + formID + " deleted successfully.");
     saveFormsToFile("Form.txt");
 }
 

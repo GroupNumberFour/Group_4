@@ -88,7 +88,10 @@ public class NewMain {
                   updateForm(file, name, employeeId); 
                }
                
-              else if (EmployeeMenueChoice == 3){
+                else if (EmployeeMenueChoice == 3){// Excel
+                }
+                
+              else if (EmployeeMenueChoice == 4){
                   System.out.println("Exiting program...");
                   break;
                 
@@ -128,7 +131,8 @@ public class NewMain {
             System.out.println("\n===== Main Menu =====");
             System.out.println("1. Fill a new form");
             System.out.println("2. update a specific form ");
-            System.out.println("3. Exit");
+            System.out.println("3. generate Excel report ");
+            System.out.println("4. Exit");
             System.out.print("Enter your choice: ");
       }
 

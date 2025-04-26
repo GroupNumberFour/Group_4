@@ -29,6 +29,33 @@ import java.util.Scanner;
         public int getId() { 
          return id;
      }
+        public String getMunicipality() {
+    return municipality;
+}
+
+public String getContract() {
+    return contract;
+}
+
+public String getDistrict() {
+    return district;
+}
+
+public String getCoordinates() {
+    return coordinates;
+}
+
+public String getReportDate() {
+    return reportDate;
+}
+
+public String getSubject() {
+    return subject;
+}
+
+public String getNotes() {
+    return notes;
+}
     // update content
     public void updateInfo(String municipality, String contract, String district,
                        String coordinates, String reportDate, String subject, String notes) {

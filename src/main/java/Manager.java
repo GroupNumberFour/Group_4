@@ -30,7 +30,7 @@ private static int nextId = 1;
             System.out.println("Error saving template: " + e.getMessage());
         }
 
-        
+        FileHandler.save(newForm);
         // Continue with normal display
         System.out.println("----------------------------------------------------");
         System.out.println("--------Form Created and Saved Successfully--------");

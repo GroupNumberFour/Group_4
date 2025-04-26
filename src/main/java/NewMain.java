@@ -49,7 +49,7 @@ public class NewMain {
                     } else if (ManagerMenuSelection == 2) { // delete form
                         System.out.println("Please enter form ID you want to delete:");
                         int formID = input.nextInt();
-                        input.nextLine();
+                        
                         file.delete(formID);
                         file.listForms();
                     } else if (ManagerMenuSelection == 3) { // open Excel form
